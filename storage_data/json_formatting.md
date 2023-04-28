@@ -22,7 +22,7 @@
     "type": "scroll",
     "rarity": "rarity",
     "spells": [""],
-    "homebrew": "N/A",
+    "homebrew": false,
     "details": "Item details"
 }
 ```
