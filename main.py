@@ -5,7 +5,6 @@ from google.auth.transport.requests import AuthorizedSession
 # Built in libraries
 import json
 import os
-import time
 import sys
 
 # Created modules
@@ -78,6 +77,7 @@ def get_process() -> None:
         
     full_URL = f"https://magic-item-generator-default-rtdb.firebaseio.com/magic_items/{rarity}.json"
     
+    print(LINE_DIVIDE)
         
     item_get(auth_session, full_URL, item_count)
     
@@ -103,6 +103,8 @@ def post_process() -> None:
     
     db_folder_url = f"{DB_URL}/{rarity}/.json"
     
+    print(LINE_DIVIDE)
+    
     item_post(auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity)
 
 def put_process() -> None:
@@ -125,6 +127,8 @@ def put_process() -> None:
     file_directory = f"{os.getcwd()}/magic_items/{rarity}/"
     
     db_folder_url = f"{DB_URL}/{rarity}/"
+    
+    print(LINE_DIVIDE)
     
     item_put(auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity)
 
@@ -160,6 +164,8 @@ def delete_process() -> None:
     # Puts together information for target url
     target_url = f"{DB_URL}/{rarity}/{index_json[file_name]}"
 
+    print("----------------------------------------------------------\n")
+
     # Runs function to delete file from index.json and database
     item_delete(auth_session, index_json,
                 INDEX_JSON_DIR, target_url, file_name)
@@ -167,7 +173,7 @@ def delete_process() -> None:
 
 def main():
 
-    print("Welcome to Seth Hartman's database querier. Version 1.1.0")
+    print("Welcome to Seth Hartman's database querier. Version 1.3.0")
 
     print_options()
 
@@ -183,24 +189,17 @@ def main():
         # 1. Get
         elif user_input == "1":
             get_process()
-
             print_options()
-            pass
 
         # 2. Post
         elif user_input == "2":
             post_process()
-
             print_options()
-            pass
 
         # 3. Put
         elif user_input == "3":
             put_process()
-
-
             print_options()
-            pass
 
         # 4. Delete
         elif user_input == "4":
