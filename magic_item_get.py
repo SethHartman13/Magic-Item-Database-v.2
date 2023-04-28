@@ -27,10 +27,15 @@ def main(auth_session: AuthorizedSession, full_URL: str, item_count: int) -> Non
                 0, len(magic_item_tuples) - 1)]
             
             # Collecting information every JSON has
-            name = item_dict['name']
-            itype = item_dict['type']
-            details = item_dict['details']
-            homebrew = item_dict['homebrew']
+            
+            try:
+                name = item_dict['name']
+                itype = item_dict['type']
+                details = item_dict['details']
+                homebrew = item_dict['homebrew']
+                
+            except KeyError:
+                print(f"{name} is missing a vital key")
             
             
             
