@@ -15,6 +15,7 @@ def main(auth_session: AuthorizedSession, full_URL: str, item_count: int) -> Non
         response_json = response.json()
         magic_item_tuples = list(response_json.items())
         
+        counter = 0
         # Loops through and grabs information from dictionary
         for _ in range(item_count):
 
@@ -30,6 +31,8 @@ def main(auth_session: AuthorizedSession, full_URL: str, item_count: int) -> Non
             itype = item_dict['type']
             details = item_dict['details']
             homebrew = item_dict['homebrew']
+            
+            
             
             # Potions
             if itype == "potion":
@@ -55,7 +58,7 @@ def main(auth_session: AuthorizedSession, full_URL: str, item_count: int) -> Non
                 variation_list = item_dict['variations']
                 
                 # If there are no variations, just collect name
-                if variation_list == "":
+                if variation_list[0] == "":
                     information_list.append(name)
                     
                 # If there are variations, select random variation.
@@ -72,25 +75,25 @@ def main(auth_session: AuthorizedSession, full_URL: str, item_count: int) -> Non
                     
                     # If there are no special requirements
                     if attunement_type == "None":
-                        information_list.append("Requires attunement")
+                        information_list.append("Requires attunement\n")
                 
                     elif attunement_type == "class":
                         c_class = item_dict["class"]
-                        information_list.append(f"Requires attunement by a creature who has a least one level in the following class(es): {c_class}")
+                        information_list.append(f"Requires attunement by a creature who has a least one level in the following class(es): {c_class}\n")
                         
                     elif attunement_type == "race":
                         race = item_dict["race"]
-                        information_list.append(f"Requires attunement by the following race(s): {race}")
+                        information_list.append(f"Requires attunement by the following race(s): {race}\n")
                     
                     elif attunement_type == "other":
                         other = item_dict["other"]
-                        information_list.append(f"Attunement Requirement: {other}")
+                        information_list.append(f"Attunement Requirement: {other}\n")
                         
                     else:
                         assert False, f"attunement_type was given an unknown attunement of {attunement_type} with item {name}"
                 
                 else:
-                    pass
+                    information_list.append("")
                 
                 information_list.append(details)
                 
@@ -100,7 +103,13 @@ def main(auth_session: AuthorizedSession, full_URL: str, item_count: int) -> Non
                     information_list.append("")
                     
             for line in information_list:
-                print(line)
+                print(line)    
+            
+            counter += 1
+            
+            if counter <= item_count - 1:
+                print("----------------------------------------------------------\n")
+                
                 
 
 if __name__ == "__main__":
