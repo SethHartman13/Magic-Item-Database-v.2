@@ -21,6 +21,7 @@
     "name": "name",
     "type": "scroll",
     "rarity": "rarity",
+    "level": 0,
     "spells": [""],
     "homebrew": false,
     "details": "Item details"
