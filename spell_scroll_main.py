@@ -1,6 +1,7 @@
 # Request libraries
 from google.oauth2 import service_account
 from google.auth.transport.requests import AuthorizedSession
+from urllib.request import urlopen
 
 # Built in libraries
 import json
@@ -10,11 +11,10 @@ import sys
 # Created modules
 from spell_scroll_rarity import main as scroll_rarity
 
-# Index JSON
-INDEX_JSON_DIR = f"{os.getcwd()}/storage_data/index.json"
-with open(INDEX_JSON_DIR, "r") as f:
-    index_json = json.load(f)
-
+# Grabs index JSON
+JSON_URL = "https://raw.githubusercontent.com/SethHartman13/Magic-Item-Database-v.2/16ea9e18c2d1781a084f3b50976c85c1275f6488/storage_data/index.json"
+response = urlopen(JSON_URL)
+index_json = json.loads(response.read())
 INDEX_KEYS = list(index_json.keys())
 
 # DB_URL
@@ -32,7 +32,7 @@ CREDENTIALS = service_account.Credentials.from_service_account_file(
 auth_session = AuthorizedSession(CREDENTIALS)
 
 OPTION_LIST = ["0. Exit", "1. Query by Rarity", "2. Query by Level"]
-RARITY_LIST = os.listdir(f"{os.getcwd()}/magic_items/")
+RARITY_LIST = ["common", "uncommon", "rare", "very rare", "legendary"]
 LINE_DIVIDE = "=========================================================\n"
 MINI_DIVIDE = "---------------------------------------------------------\n"
 
