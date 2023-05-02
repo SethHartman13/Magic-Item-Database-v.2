@@ -157,6 +157,7 @@ def main(auth_session: AuthorizedSession, file_dir: str, index_json_dir: str, db
     for thread in threads:
         thread.join()
 
+
     # Error notifications
     if len(error_files) > 0:
 
@@ -166,6 +167,8 @@ def main(auth_session: AuthorizedSession, file_dir: str, index_json_dir: str, db
             print(file)
             
         error_files = []
+
+    print()
 
 if __name__ == "__main__":
     print("This code is not meant to be executed directly, please execute main.py instead.")
