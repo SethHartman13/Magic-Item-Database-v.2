@@ -15,7 +15,7 @@ from magic_item_put import main as item_put
 
 # Index JSON
 INDEX_JSON_DIR = f"{os.getcwd()}/storage_data/index.json"
-with open(INDEX_JSON_DIR, 'r') as f:
+with open(INDEX_JSON_DIR, "r") as f:
     index_json = json.load(f)
 
 # DB_URL
@@ -24,10 +24,11 @@ DB_URL = "https://magic-item-generator-default-rtdb.firebaseio.com/magic_items"
 # Authentication setup
 SCOPES = [
     "https://www.googleapis.com/auth/userinfo.email",
-    "https://www.googleapis.com/auth/firebase.database"
+    "https://www.googleapis.com/auth/firebase.database",
 ]
 CREDENTIALS = service_account.Credentials.from_service_account_file(
-    "credentials.json", scopes=SCOPES)
+    "credentials.json", scopes=SCOPES
+)
 
 auth_session = AuthorizedSession(CREDENTIALS)
 
@@ -51,8 +52,12 @@ def print_options() -> None:
         print(f"{option}\n")
     print(LINE_DIVIDE)
 
+
 def get_process() -> None:
-    
+    """
+    Function that handles setting up the get request.
+    """
+
     # While loop to insure valid rarity input
     while True:
         rarity = input("Rarity level: ")
@@ -62,7 +67,7 @@ def get_process() -> None:
             break
         else:
             print("Invalid Input.\n")
-            
+
     # While loop to insure valid item count input
     while True:
         try:
@@ -74,16 +79,19 @@ def get_process() -> None:
 
         else:
             break
-        
+
     full_URL = f"https://magic-item-generator-default-rtdb.firebaseio.com/magic_items/{rarity}.json"
-    
+
     print(LINE_DIVIDE)
-        
+
     item_get(auth_session, full_URL, item_count)
-    
+
 
 def post_process() -> None:
-    
+    """
+    Function that handles setting up the post request.
+    """
+
     # While loop to insure valid rarity input
     while True:
         rarity = input("Rarity level: ")
@@ -96,19 +104,24 @@ def post_process() -> None:
             print("Invalid Input.\n")
 
     # Grabs the file names within the rarity folder
-    files_in_rarity = os.listdir(
-        f"{os.getcwd()}/magic_items/{rarity}/")
-    
+    files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity}/")
+
     file_directory = f"{os.getcwd()}/magic_items/{rarity}/"
-    
+
     db_folder_url = f"{DB_URL}/{rarity}/.json"
-    
+
     print(LINE_DIVIDE)
-    
-    item_post(auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity)
+
+    item_post(
+        auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity
+    )
+
 
 def put_process() -> None:
-        
+    """
+    Function that handles setting up the put request.
+    """
+    
     # While loop to insure valid rarity input
     while True:
         rarity = input("Rarity level: ")
@@ -121,16 +134,18 @@ def put_process() -> None:
             print("Invalid Input.\n")
 
     # Grabs the file names within the rarity folder
-    files_in_rarity = os.listdir(
-        f"{os.getcwd()}/magic_items/{rarity}/")
-    
+    files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity}/")
+
     file_directory = f"{os.getcwd()}/magic_items/{rarity}/"
-    
+
     db_folder_url = f"{DB_URL}/{rarity}/"
-    
+
     print(LINE_DIVIDE)
-    
-    item_put(auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity)
+
+    item_put(
+        auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity
+    )
+
 
 def delete_process() -> None:
     """
@@ -149,10 +164,9 @@ def delete_process() -> None:
             print("Invalid Input.\n")
 
     # Grabs the file names within the rarity folder
-    files_in_rarity = os.listdir(
-        f"{os.getcwd()}/magic_items/{rarity}/")
-    
-    # While loop to insure valid file input 
+    files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity}/")
+
+    # While loop to insure valid file input
     while True:
         file_name = input("What is the name of the file? ")
 
@@ -167,12 +181,10 @@ def delete_process() -> None:
     print("----------------------------------------------------------\n")
 
     # Runs function to delete file from index.json and database
-    item_delete(auth_session, index_json,
-                INDEX_JSON_DIR, target_url, file_name)
+    item_delete(auth_session, index_json, INDEX_JSON_DIR, target_url, file_name)
 
 
 def main():
-
     print("Welcome to Seth Hartman's magic item querier. Version 1.3.3")
 
     print_options()
@@ -212,4 +224,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
