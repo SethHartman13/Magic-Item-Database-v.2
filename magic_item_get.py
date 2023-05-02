@@ -21,7 +21,7 @@ def main(auth_session: AuthorizedSession, full_URL: str, item_count: int) -> Non
 
             information_list = []
             
-            # Pulls information out of a random tuple
+            # Pulls information out of a random magic item tuple
             # Tuple format: (unique_DB_ID (str), item_dictionary (dict))
             _, item_dict = magic_item_tuples[random.randint(
                 0, len(magic_item_tuples) - 1)]
