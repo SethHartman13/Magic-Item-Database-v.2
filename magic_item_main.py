@@ -173,7 +173,7 @@ def delete_process() -> None:
 
 def main():
 
-    print("Welcome to Seth Hartman's database querier. Version 1.3.0")
+    print("Welcome to Seth Hartman's magic item querier. Version 1.3.3")
 
     print_options()
 
@@ -205,6 +205,9 @@ def main():
         elif user_input == "4":
             delete_process()
             print_options()
+
+        else:
+            print("Invalid input, please try again.")
 
 
 if __name__ == "__main__":
