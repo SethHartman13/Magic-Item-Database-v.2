@@ -79,7 +79,7 @@ class RequestThread(threading.Thread):
             if response.status_code == 200:
                 # Print lock
                 with self.print_lock:
-                    print(f"{self.file_name} successfully updated!")
+                    print(f"{self.file_name} successfully updated!\n")
 
             # If the databases says it was not a good request
             else:
