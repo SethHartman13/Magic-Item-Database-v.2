@@ -1,5 +1,4 @@
 # Built-in libraries
-
 import webbrowser
 import time
 
