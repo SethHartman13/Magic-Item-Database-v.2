@@ -18,6 +18,7 @@ def main(
 
     print(f"Response came back with status code {error_code} with {file_name}")
 
+    # While loop to ask if the user wants to look up the error code
     while True:
         user_input = input(
             f"Would you like to look up status code {error_code}? (Y/N) "
@@ -36,5 +37,6 @@ def main(
             print("Invalid input")
 
 
+# If the program is run directly when it is not supposed to 
 if __name__ == "__main__":
     print("This file is not supposed to be run by itself.")
