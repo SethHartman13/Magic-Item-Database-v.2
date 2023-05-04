@@ -8,14 +8,14 @@ import json
 import threading
 import time
 
-# Created modules
-import connection_error
-
 # Global variables
 error_files = []
+# ----------------------------------------------------------------------------------
 
 
-class RequestThread(threading.Thread):
+class RequestThread(
+    threading.Thread
+):
     def __init__(
         self,
         auth_session: AuthorizedSession,
@@ -51,9 +51,15 @@ class RequestThread(threading.Thread):
         self.error_lock = error_lock
         self.connection_attempts = 0
 
-    def run(self):
+    def run(
+        self
+    ) -> None:
+        """
+        Function that overrides threading.Thread's default behavior.
+        """
         global error_files
 
+        # Ensures that the program will attempt a few times to connect to the database
         while self.connection_attempts < 3:
             try:
                 # Checks to see if the file has already been added to the index
@@ -81,6 +87,7 @@ class RequestThread(threading.Thread):
 
                     # If the database says it was a good request
                     if response.status_code == 200:
+
                         # Puts response into a JSON
                         response_detail = response.json()
 
@@ -109,6 +116,7 @@ class RequestThread(threading.Thread):
                                 f"{self.file_name} Error: {response.status_code}"
                             )
 
+            # If there is a connection error
             except client.RemoteDisconnected:
                 print(f"Connection failed with {self.file_name}")
                 self.connection_attempts += 1
@@ -185,6 +193,7 @@ def main(
     print()
 
 
+# If the program is run directly when it is not supposed to
 if __name__ == "__main__":
     print(
         "This code is not meant to be executed directly, please execute main.py instead."

@@ -1,4 +1,4 @@
-# Import for datatyping
+# Import for data-typing
 from google.auth.transport.requests import AuthorizedSession
 
 # Built-in libraries
@@ -10,7 +10,7 @@ import connection_error
 
 def main(
     auth_session: AuthorizedSession,
-    index_json: dict,
+    index_json: dict[str,str],
     index_json_dir: str,
     full_URL: str,
     file_name: str,

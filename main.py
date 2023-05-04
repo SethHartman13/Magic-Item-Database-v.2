@@ -32,15 +32,18 @@ CREDENTIALS = service_account.Credentials.from_service_account_file(
 
 auth_session = AuthorizedSession(CREDENTIALS)
 
+# Global Constants
 OPTION_LIST = ["0. Exit", "1. Get", "2. Post", "3. Put", "4. Delete"]
 
 LINE_DIVIDE = "=========================================================\n"
+MINI_DIVIDE = "---------------------------------------------------------\n"
 
 RARITY_LIST = os.listdir(f"{os.getcwd()}/magic_items/")
 # ----------------------------------------------------------------------------------
 
 
-def print_options() -> None:
+def print_options(
+) -> None:
     """
     Function to print options
     """
@@ -53,7 +56,8 @@ def print_options() -> None:
     print(LINE_DIVIDE)
 
 
-def get_process() -> None:
+def get_process(
+) -> None:
     """
     Function that handles setting up the get request.
     """
@@ -135,9 +139,7 @@ def put_process() -> None:
 
     # Grabs the file names within the rarity folder
     files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity}/")
-
     file_directory = f"{os.getcwd()}/magic_items/{rarity}/"
-
     db_folder_url = f"{DB_URL}/{rarity}/"
 
     print(LINE_DIVIDE)
@@ -147,7 +149,8 @@ def put_process() -> None:
     )
 
 
-def delete_process() -> None:
+def delete_process(
+) -> None:
     """
     Function that handles setting up the delete request.
     """
@@ -178,13 +181,14 @@ def delete_process() -> None:
     # Puts together information for target url
     target_url = f"{DB_URL}/{rarity}/{index_json[file_name]}"
 
-    print("----------------------------------------------------------\n")
+    print(MINI_DIVIDE)
 
     # Runs function to delete file from index.json and database
     item_delete(auth_session, index_json, INDEX_JSON_DIR, target_url, file_name)
 
 
-def main():
+def main(
+) -> None:
     print("Welcome to Seth Hartman's magic item querier. Version 1.3.3")
 
     print_options()

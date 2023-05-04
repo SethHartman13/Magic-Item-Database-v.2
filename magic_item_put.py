@@ -12,7 +12,9 @@ import connection_error
 error_files = []
 
 
-class RequestThread(threading.Thread):
+class RequestThread(
+    threading.Thread
+):
     def __init__(
         self,
         auth_session: AuthorizedSession,
@@ -47,7 +49,9 @@ class RequestThread(threading.Thread):
         self.print_lock = print_lock
         self.error_lock = error_lock
 
-    def run(self):
+    def run(
+        self
+    ) -> None:
         global error_files
 
         # Checks to see if the file in in the index
