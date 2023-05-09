@@ -47,7 +47,7 @@ def main(
 
             try:
                 name = item_dict["name"]
-                itype = item_dict["type"]
+                itype = item_dict["item_type"]
                 details = item_dict["details"]
                 homebrew = item_dict["homebrew"]
 
