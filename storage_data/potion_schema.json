@@ -1,0 +1,63 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "name",
+        "type",
+        "rarity",
+        "homebrew",
+        "details"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "default": "",
+            "title": "The name Schema",
+            "examples": [
+                "name"
+            ]
+        },
+        "type": {
+            "type": "string",
+            "default": "",
+            "title": "The type Schema",
+            "examples": [
+                "potion"
+            ]
+        },
+        "rarity": {
+            "type": "string",
+            "default": "",
+            "title": "The rarity Schema",
+            "examples": [
+                "rarity"
+            ]
+        },
+        "homebrew": {
+            "type": "boolean",
+            "default": false,
+            "title": "The homebrew Schema",
+            "examples": [
+                false
+            ]
+        },
+        "details": {
+            "type": "string",
+            "default": "",
+            "title": "The details Schema",
+            "examples": [
+                "Item details"
+            ]
+        }
+    },
+    "examples": [{
+        "name": "name",
+        "type": "potion",
+        "rarity": "rarity",
+        "homebrew": false,
+        "details": "Item details"
+    }]
+}
