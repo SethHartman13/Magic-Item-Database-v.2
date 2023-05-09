@@ -6,7 +6,7 @@
 ```json
 {
     "name": "name",
-    "type": "potion",
+    "item_type": "potion",
     "rarity": "rarity",
     "homebrew": false,
     "details": "Item details"
@@ -19,7 +19,7 @@
 ```json
 {
     "name": "name",
-    "type": "scroll",
+    "item_type": "scroll",
     "rarity": "rarity",
     "level": 0,
     "spells": [""],
@@ -33,7 +33,7 @@
 ```json
 {
     "name": "name",
-    "type": "type",
+    "item_type": "type",
     "rarity": "rarity",
     "attunement": false,
     "attunement_type": "None",

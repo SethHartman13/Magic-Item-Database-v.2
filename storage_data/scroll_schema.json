@@ -8,6 +8,8 @@
         "name",
         "item_type",
         "rarity",
+        "level",
+        "spells",
         "homebrew",
         "details"
     ],
@@ -25,7 +27,7 @@
             "default": "",
             "title": "The item_type Schema",
             "examples": [
-                "potion"
+                "scroll"
             ]
         },
         "rarity": {
@@ -34,6 +36,31 @@
             "title": "The rarity Schema",
             "examples": [
                 "rarity"
+            ]
+        },
+        "level": {
+            "type": "integer",
+            "default": 0,
+            "title": "The level Schema",
+            "examples": [
+                0
+            ]
+        },
+        "spells": {
+            "type": "array",
+            "default": [],
+            "title": "The spells Schema",
+            "items": {
+                "type": "string",
+                "default": "",
+                "title": "A Schema",
+                "examples": [
+                    ""
+                ]
+            },
+            "examples": [
+                [
+                    ""]
             ]
         },
         "homebrew": {
@@ -55,8 +82,12 @@
     },
     "examples": [{
         "name": "name",
-        "item_type": "potion",
+        "item_type": "scroll",
         "rarity": "rarity",
+        "level": 0,
+        "spells": [
+            ""
+        ],
         "homebrew": false,
         "details": "Item details"
     }]

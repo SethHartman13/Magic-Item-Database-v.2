@@ -1,0 +1,130 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "name",
+        "item_type",
+        "rarity",
+        "attunement",
+        "variations",
+        "homebrew",
+        "details"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "default": "",
+            "title": "The name Schema",
+            "examples": [
+                "name"
+            ]
+        },
+        "item_type": {
+            "type": "string",
+            "default": "",
+            "title": "The item_type Schema",
+            "examples": [
+                "type"
+            ]
+        },
+        "rarity": {
+            "type": "string",
+            "default": "",
+            "title": "The rarity Schema",
+            "examples": [
+                "rarity"
+            ]
+        },
+        "attunement": {
+            "type": "boolean",
+            "default": false,
+            "title": "The attunement Schema",
+            "examples": [
+                false
+            ]
+        },
+        "attunement_type": {
+            "type": "string",
+            "default": "",
+            "title": "The attunement_type Schema",
+            "examples": [
+                "None"
+            ]
+        },
+        "class": {
+            "type": "string",
+            "default": "",
+            "title": "The class Schema",
+            "examples": [
+                "None"
+            ]
+        },
+        "race": {
+            "type": "string",
+            "default": "",
+            "title": "The race Schema",
+            "examples": [
+                "None"
+            ]
+        },
+        "other": {
+            "type": "string",
+            "default": "",
+            "title": "The other Schema",
+            "examples": [
+                "None"
+            ]
+        },
+        "variations": {
+            "type": "array",
+            "default": [],
+            "title": "The variations Schema",
+            "items": {
+                "type": "string",
+                "default": "",
+                "title": "A Schema",
+                "examples": [
+                    ""
+                ]
+            },
+            "examples": [
+                [
+                    ""]
+            ]
+        },
+        "homebrew": {
+            "type": "boolean",
+            "default": false,
+            "title": "The homebrew Schema",
+            "examples": [
+                false
+            ]
+        },
+        "details": {
+            "type": "string",
+            "default": "",
+            "title": "The details Schema",
+            "examples": [
+                "Item details"
+            ]
+        }
+    },
+    "examples": [{
+        "name": "name",
+        "item_type": "type",
+        "rarity": "rarity",
+        "attunement": false,
+        "attunement_type": "None",
+        "class": "None",
+        "race": "None",
+        "other": "None",
+        "variations": [
+            ""
+        ],
+        "homebrew": false,
+        "details": "Item details"
+    }]
+}
