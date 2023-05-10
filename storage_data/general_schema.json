@@ -28,7 +28,8 @@
             "title": "The item_type Schema",
             "examples": [
                 "type"
-            ]
+            ],
+            "enum": ["armor", "ring", "rod", "staff", "wand", "weapon", "wondrous item"]
         },
         "rarity": {
             "type": "string",
@@ -36,7 +37,8 @@
             "title": "The rarity Schema",
             "examples": [
                 "rarity"
-            ]
+            ],
+            "enum": ["common", "uncommon", "rare", "varies", "very rare", "artifact", "legendary"]
         },
         "attunement": {
             "type": "boolean",
@@ -52,7 +54,8 @@
             "title": "The attunement_type Schema",
             "examples": [
                 "None"
-            ]
+            ],
+            "enum": ["other", "None", "class", "race"]
         },
         "class": {
             "type": "string",

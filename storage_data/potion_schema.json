@@ -26,7 +26,8 @@
             "title": "The item_type Schema",
             "examples": [
                 "potion"
-            ]
+            ],
+            "enum": ["potion"]
         },
         "rarity": {
             "type": "string",
@@ -34,7 +35,8 @@
             "title": "The rarity Schema",
             "examples": [
                 "rarity"
-            ]
+            ],
+            "enum": ["common", "uncommon", "rare", "varies", "very rare", "artifact", "legendary"]
         },
         "homebrew": {
             "type": "boolean",
