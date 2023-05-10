@@ -189,7 +189,7 @@ def delete_process(
 
 def main(
 ) -> None:
-    print("Welcome to Seth Hartman's magic item querier. Version 1.3.3")
+    print("Welcome to Seth Hartman's magic item querier. Version 1.4.0")
 
     print_options()
 
