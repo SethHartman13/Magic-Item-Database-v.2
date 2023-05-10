@@ -1,4 +1,4 @@
-# Import for datatyping
+# Import for data-typing
 from google.auth.transport.requests import AuthorizedSession
 import google.auth.transport.requests as requests
 from http import client
@@ -80,7 +80,19 @@ class RequestThread(
 
                     # Opens JSON file (thread safe because threads are accessing different files)
                     with open(full_file_dir, "r") as f:
-                        json_file = f.read()
+                        edit_json_file = json.load(f)
+
+                    # Renames keys since Firebase does not like $'s in keys
+                    schema = edit_json_file['$schema']
+                    json_id = edit_json_file['$id']
+
+                    del edit_json_file['$schema']
+                    del edit_json_file['$id']
+
+                    edit_json_file['schema'] = schema
+                    edit_json_file['id'] = json_id
+
+                    json_file = json.dumps(edit_json_file, indent=4, sort_keys=True)
 
                     # Sends JSON to database
                     response = self.session.post(self.full_url, data=json_file)
@@ -141,7 +153,7 @@ def main(
     file_list: list[str],
 ) -> None:
     """
-    Main function to add JSONS to the database
+    Main function to add JSONs to the database
 
     Args:
         auth_session (AuthorizedSession): Authenticated request object

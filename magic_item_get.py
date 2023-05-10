@@ -44,15 +44,13 @@ def main(
             ]
 
             # Collecting information every JSON has
+            name = item_dict["name"]
+            itype = item_dict["item_type"]
+            details = item_dict["details"]
+            homebrew = item_dict["homebrew"]
 
-            try:
-                name = item_dict["name"]
-                itype = item_dict["item_type"]
-                details = item_dict["details"]
-                homebrew = item_dict["homebrew"]
-
-            except KeyError:
-                print(f"{name} is missing a vital key")
+            schema = item_dict["schema"]
+            json_id = item_dict["id"]
 
             # Potions
             if itype == "potion":
