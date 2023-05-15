@@ -5,6 +5,9 @@ import sys
 from jsonschema import validate
 from jsonschema import ValidationError
 import threading
+from pathlib import Path
+
+os.chdir(Path.cwd())
 
 RARITY_LIST = os.listdir(f"{os.getcwd()}/magic_items/")
 problem_counter = 0
