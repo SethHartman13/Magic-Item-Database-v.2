@@ -26,7 +26,7 @@ def main(
 
         if user_input == "y" or user_input == "yes" or user_input == "1":
             print("Your browser will pull up a wikipedia article.")
-            time.wait(2)
+            time.sleep(2)
             webbrowser.open("https://en.wikipedia.org/wiki/List_of_HTTP_status_codes")
             break
         elif user_input == "n" or user_input == "no" or user_input == "0":
