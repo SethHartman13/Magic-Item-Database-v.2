@@ -40,7 +40,6 @@ def check_entries(
         except:
             problems.append("$schema")
 
-        
         # Item name
         try:
             if json_file['name'] == 'name':
@@ -68,7 +67,8 @@ def check_entries(
                 problems.append('details')
         except:
             problems.append('details')
-            
+
+
         # If the item is not a potion or a scroll
         if json_file['item_type'] != 'potion' and json_file['item_type'] != 'scroll':
             
@@ -87,19 +87,17 @@ def check_entries(
             except:
                 problems.append("attunement")
 
-
-
-
-                
             # Item variations
             try:
                 json_file['variations']
             except:
                 problems.append('variations')
-                
+
+
         # If the item is a potion
         elif json_file['item_type'] != 'potion':
             pass
+        
         
         # If the item is a scroll
         else:
@@ -121,7 +119,13 @@ def check_entries(
         
     return problems
 
-def start_cb(something: None|list) -> None:
+def start_cb(something: None|list[str]) -> None:
+    """
+    Callback function for start()
+
+    Args:
+        something (None | list[str]): If there are no problems, start_cb recieves a None object. If there are problems, it receives a list of strings
+    """
     global problem_counter
 
     if type(something) != list:
@@ -130,7 +134,16 @@ def start_cb(something: None|list) -> None:
         problem_counter.append(1)
               
 
-def start(item_list: list) -> None:
+def start(item_list: list[str]) -> None|list[str]:
+    """
+    Main function that starts when the pool of processes starts
+
+    Args:
+        item_list (list[str]): List containing directory location and rarity
+
+    Returns:
+        (None|list[str]): If there are no problems, it returns None to the callback. If there are problems, it returns a list of strings to the callback
+    """
     global process_lock
 
     directory = item_list[0]
@@ -184,17 +197,15 @@ def start(item_list: list) -> None:
         return problems
         
     else:
-        pass
+        return None
 
 def main() -> None:
     """
     Main program function
     """
-    global process_lock
+
     # Create thread list and locks
     dir_list = []
-    # print_lock = mp.Lock()
-    # problem_lock = mp.Lock()
 
     # For each rarity we have folders for
     for rarity in RARITY_LIST:
@@ -203,7 +214,7 @@ def main() -> None:
         # If the rarity is not empty
         if len(json_list) != 0:
             
-            # Create a thread for each JSON
+            # Create a list for each JSON/rarity and add it to the dir_list
             for json_name in json_list:
                 temp_list = []
 
@@ -214,13 +225,17 @@ def main() -> None:
         else:
             pass
 
+    # Assigns the number of processors to the pool
     pool = mp.Pool(processes=os.cpu_count())
 
+    # Does an apply (async) to each file
     for list in dir_list:
         pool.apply_async(start,args=(list, ), callback=start_cb)
 
+    # Closes the pool
     pool.close()
 
+    # Joins the pool
     pool.join()
     
     # If there were problem JSONs
