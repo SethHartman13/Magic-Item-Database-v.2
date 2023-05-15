@@ -6,12 +6,16 @@ from google.auth.transport.requests import AuthorizedSession
 import json
 import os
 import sys
+from pathlib import Path
 
 # Created modules
 from magic_item_delete import main as item_delete
 from magic_item_post import main as item_post
 from magic_item_get import main as item_get
 from magic_item_put import main as item_put
+
+# Sets current working directory to the directory of the file
+os.chdir(Path.cwd())
 
 # Index JSON
 INDEX_JSON_DIR = f"{os.getcwd()}/storage_data/index.json"
