@@ -48,6 +48,7 @@ def main(
             itype = item_dict["item_type"]
             details = item_dict["details"]
             homebrew = item_dict["homebrew"]
+            legacy = item_dict["legacy"]
 
             schema = item_dict["schema"]
             json_id = item_dict["id"]
@@ -126,6 +127,9 @@ def main(
 
                 # Appends details to the list
                 information_list.append(details)
+
+                if legacy:
+                    information_list.append("LEGACY ITEM\n")
 
                 # If the item is not homebrew
                 if not homebrew:

@@ -11,7 +11,8 @@
         "attunement",
         "variations",
         "homebrew",
-        "details"
+        "details",
+        "legacy"
     ],
     "properties": {
         "name": {
@@ -106,6 +107,14 @@
             "type": "boolean",
             "default": false,
             "title": "The homebrew Schema",
+            "examples": [
+                false
+            ]
+        },
+        "legacy": {
+            "type": "boolean",
+            "default": false,
+            "title": "The legacy Schema",
             "examples": [
                 false
             ]

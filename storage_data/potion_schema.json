@@ -9,6 +9,7 @@
         "item_type",
         "rarity",
         "homebrew",
+        "legacy",
         "details"
     ],
     "properties": {
@@ -43,6 +44,14 @@
             "type": "boolean",
             "default": false,
             "title": "The homebrew Schema",
+            "examples": [
+                false
+            ]
+        },
+        "legacy": {
+            "type": "boolean",
+            "default": false,
+            "title": "The legacy Schema",
             "examples": [
                 false
             ]

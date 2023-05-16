@@ -12,6 +12,7 @@
     "item_type": "potion",
     "rarity": "rarity",
     "homebrew": false,
+    "legacy": false,
     "details": "Item details"
 }
 ```
@@ -30,6 +31,7 @@
     "level": 0,
     "spells": [""],
     "homebrew": false,
+    "legacy": false,
     "details": "Item details"
 }
 ```
@@ -51,6 +53,7 @@
     "other": "None",
     "variations": [""],
     "homebrew": false,
+    "legacy": false,
     "details": "Item details"
 }
 ```
