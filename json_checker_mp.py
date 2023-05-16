@@ -3,19 +3,18 @@ import json
 import os
 import sys
 from jsonschema import validate
-from jsonschema import ValidationError
-import threading
 import multiprocessing as mp
 from pathlib import Path
 
+# Sets file directory as working directory
 os.chdir(Path.cwd())
 
+# Gets rarity list
 RARITY_LIST = os.listdir(f"{os.getcwd()}/magic_items/")
 problem_counter = []
 
+# Creates global process lock for printing
 process_lock = mp.Lock()
-
-
 # ----------------------------------------------------------------------------------
 
 def check_entries(
@@ -98,7 +97,7 @@ def check_entries(
         elif json_file['item_type'] != 'potion':
             pass
         
-        
+
         # If the item is a scroll
         else:
             
