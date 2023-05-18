@@ -106,23 +106,40 @@ def post_process() -> None:
         print()
         rarity.lower()
 
-        if rarity in RARITY_LIST:
+        if rarity in RARITY_LIST or rarity =="all":
             break
         else:
             print("Invalid Input.\n")
 
-    # Grabs the file names within the rarity folder
-    files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity}/")
+    if rarity != "all":
 
-    file_directory = f"{os.getcwd()}/magic_items/{rarity}/"
+        # Grabs the file names within the rarity folder
+        files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity}/")
 
-    db_folder_url = f"{DB_URL}/{rarity}/.json"
+        file_directory = f"{os.getcwd()}/magic_items/{rarity}/"
 
-    print(LINE_DIVIDE)
+        db_folder_url = f"{DB_URL}/{rarity}/.json"
 
-    item_post(
-        auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity
-    )
+        print(LINE_DIVIDE)
+
+        item_post(
+            auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity
+        )
+
+    else:
+        # For each rarity list
+        for rarity_item in RARITY_LIST:
+
+            # Grabs the file names within the rarity folder
+            files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity_item}/")
+            file_directory = f"{os.getcwd()}/magic_items/{rarity_item}/"
+            db_folder_url = f"{DB_URL}/{rarity_item}/.json"
+
+            print(LINE_DIVIDE)
+
+            item_post(
+                auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity
+            ) 
 
 
 def put_process() -> None:
@@ -136,21 +153,39 @@ def put_process() -> None:
         print()
         rarity.lower()
 
-        if rarity in RARITY_LIST:
+        if rarity in RARITY_LIST or rarity == "all":
             break
         else:
             print("Invalid Input.\n")
 
-    # Grabs the file names within the rarity folder
-    files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity}/")
-    file_directory = f"{os.getcwd()}/magic_items/{rarity}/"
-    db_folder_url = f"{DB_URL}/{rarity}/"
+    if rarity != "all":
 
-    print(LINE_DIVIDE)
+        # Grabs the file names within the rarity folder
+        files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity}/")
+        file_directory = f"{os.getcwd()}/magic_items/{rarity}/"
+        db_folder_url = f"{DB_URL}/{rarity}/"
 
-    item_put(
-        auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity
-    )
+        print(LINE_DIVIDE)
+
+        item_put(
+            auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity
+        )
+
+    else:
+        
+        # For each rarity list
+        for rarity_item in RARITY_LIST:
+
+            # Grabs the file names within the rarity folder
+            files_in_rarity = os.listdir(f"{os.getcwd()}/magic_items/{rarity_item}/")
+            file_directory = f"{os.getcwd()}/magic_items/{rarity_item}/"
+            db_folder_url = f"{DB_URL}/{rarity_item}/"
+
+            print(LINE_DIVIDE)
+
+            item_put(
+                auth_session, file_directory, INDEX_JSON_DIR, db_folder_url, files_in_rarity
+            )    
 
 
 def delete_process(
