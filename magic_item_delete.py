@@ -36,7 +36,7 @@ def main(
         del index_json[file_name]
 
         # Overwrites file
-        with open(index_json_dir, "w") as f:
+        with open(index_json_dir, "w", encoding="utf-8") as f:
             json.dump(index_json_dir, f, indent=4, sort_keys=True)
 
         print(f"{file_name} successfully delete!")

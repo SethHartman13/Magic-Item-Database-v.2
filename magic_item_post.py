@@ -64,7 +64,7 @@ class RequestThread(
             try:
                 # Checks to see if the file has already been added to the index
                 with self.index_lock:
-                    with open(self.index_json_dir, "r") as f:
+                    with open(self.index_json_dir, "r", encoding="utf-8") as f:
                         index_json = json.load(f)
 
                 # If the file is already in the index
@@ -79,7 +79,7 @@ class RequestThread(
                     full_file_dir = f"{self.file_dir}/{self.file_name}"
 
                     # Opens JSON file (thread safe because threads are accessing different files)
-                    with open(full_file_dir, "r") as f:
+                    with open(full_file_dir, "r", encoding="utf-8") as f:
                         edit_json_file = json.load(f)
 
                     # Renames keys since Firebase does not like $'s in keys
@@ -106,7 +106,7 @@ class RequestThread(
                         # Index lock
                         with self.index_lock:
                             # Pulls up latest version of index
-                            with open(self.index_json_dir, "r") as f:
+                            with open(self.index_json_dir, "r", encoding="utf-8") as f:
                                 index_json = json.load(f)
 
                             # We add the added json name to the index file with the unique ID assigned by the db
