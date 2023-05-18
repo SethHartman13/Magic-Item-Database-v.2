@@ -129,6 +129,60 @@
             "not": {"enum": ["Item details"]}
         }
     },
+    "if": {
+        "properties": {"attunement": {"enum": [true]}}
+    },
+    "then": {
+    "if": {
+        "properties": {"attunement_type": {"enum": ["class"]}}
+    },
+    "then": {
+        "required": ["class"],
+            "not": {
+                "anyOf": [
+                    {"required": ["race"]},
+                    {"required": ["other"]}
+                ]
+            }
+        },
+        "else": {
+            "if": {
+                "properties": {"attunement_type": {"enum": ["race"]}}
+            },
+            "then": {
+                "required": ["race"],
+                "not": {
+                    "anyOf": [
+                        {"required": ["class"]},
+                        {"required": ["other"]}
+                    ]
+                }
+            },
+            "else": {
+                "if": {
+                    "properties": {"attunement_type": {"enum": ["other"]}}
+                },
+                "then": {
+                    "required": ["other"],
+                    "not": {
+                        "anyOf": [
+                            {"required": ["class"]},
+                            {"required": ["race"]}
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "else": {
+        "not": {
+            "anyOf": [
+                {"required": ["class"]},
+                {"required": ["race"]},
+                {"required": ["other"]}
+            ]
+        }
+    },
     "examples": [{
         "name": "Weapon of Warning",
         "item_type": "weapon",
