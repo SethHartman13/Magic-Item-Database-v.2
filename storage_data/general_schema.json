@@ -170,6 +170,15 @@
                             {"required": ["race"]}
                         ]
                     }
+                },
+                "else": {
+                    "not": {
+                        "anyOf": [
+                            {"required": ["class"]},
+                            {"required": ["race"]},
+                            {"required": ["other"]}
+                        ]
+                    }
                 }
             }
         }
